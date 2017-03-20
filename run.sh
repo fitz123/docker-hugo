@@ -7,8 +7,7 @@ echo -e 'ARGS: \t' $@
 
 if [[ $HUGO_WATCH != 'false' ]]; then
     echo "Watching...";
-    exec hugo \
-            server \
+    exec hugo server \
                 --watch=true \
                 --source="/src" \
                 --theme="$HUGO_THEME" \
@@ -17,7 +16,7 @@ if [[ $HUGO_WATCH != 'false' ]]; then
                 --bind="0.0.0.0" "$@";
 else
     echo "Building one time...";
-    exec hugo \
+    exec hugo server \
             --source="/src" \
             --theme="$HUGO_THEME" \
             --destination="/output" \
