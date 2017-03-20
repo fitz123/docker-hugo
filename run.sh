@@ -16,7 +16,7 @@ if [[ $HUGO_WATCH != 'false' ]]; then
                 --bind="0.0.0.0" "$@";
 else
     echo "Building one time...";
-    exec hugo server \
+    exec hugo \
             --source="/src" \
             --theme="$HUGO_THEME" \
             --destination="/output" \
