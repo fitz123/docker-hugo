@@ -1,7 +1,7 @@
 FROM alpine:latest
-MAINTAINER Johannes Mitlmeier <dev.jojomi@yahoo.com>
+MAINTAINER Anton Lugovoi a_lugovoi@gcore.lu
 
-ENV HUGO_VERSION=0.20.1
+ENV HUGO_VERSION=0.22
 
 ADD https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
 RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp \
@@ -9,12 +9,8 @@ RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp \
     && mv /tmp/hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 /usr/local/sbin/hugo \
     && rm -rf /tmp/hugo_${HUGO_VERSION}_linux_amd64
 
-COPY ./run.sh /run.sh
-
 VOLUME /src
 VOLUME /output
 
 WORKDIR /src
-CMD ["/run.sh"]
-
-EXPOSE 1313
+ENTRYPOINT ["hugo","--source=/src","--destination=/output"]
